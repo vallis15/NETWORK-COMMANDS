@@ -4,6 +4,7 @@ from Tests import traceroute_test
 from Tests import show_curl
 from Tests import wifi_info
 from Tests import show_devices
+from Tests import speed_test
 
 def create_button_ping(root):
 
@@ -52,6 +53,12 @@ def create_devices_button(root):
     frame = tk.Frame(root)
     frame.pack(padx=20, pady=10)
     button = tk.Button(frame, text="Show devices connected on your wi-fi", command=lambda: show_devices("Wi-fi"))
+    button.pack(side="left")
+    
+def create_speed_button(root):
+    frame = tk.Frame(root)
+    frame.pack(padx=20, pady=10)
+    button = tk.Button(frame, text="Test your connection speed", command=speed_test)
     button.pack(side="left")
     
     

@@ -55,4 +55,14 @@ def show_devices(address):
 
     except Exception as e:
         print(f"Cannot find information about connected devices: {e}")
+        
+def speed_test():
+    try:
+        result = subprocess.run(['speedtest', '--simple'], stdout=subprocess.PIPE, text=True)
+        
+        print(result.stdout)
+        
+        tk.messagebox.showinfo("Speed Test Result", result.stdout)
+    except Exception as e:
+        print(f"Speed test doesn't work now: {e}")
 
