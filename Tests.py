@@ -1,21 +1,42 @@
 import subprocess
 import os
+import tkinter as tk
+from tkinter import messagebox
+
 
 def ping_test(address):
-    cmd = 'ping ' + address
-    subprocess.call(['osascript', '-e', 'tell application "Terminal" to do script "{}"'.format(cmd)])
+    try:
+        result = subprocess.run(['ping', '-c', '4', address], stdout=subprocess.PIPE, text=True)
+        
+        print(result.stdout)
+        
+        tk.messagebox.showinfo("Ping Result", result.stdout)
+    except Exception as e:
+        print(f"Ping test doesnt work now: {e}")
 
 def traceroute_test(address):
-    cmd = 'traceroute ' + address
-    subprocess.call(['osascript', '-e', 'tell application "Terminal" to do script "{}"'.format(cmd)])
+    try:
+        result = subprocess.run(['traceroute', address], stdout=subprocess.PIPE, text=True)
+        print(result.stdout)
+        messagebox.showinfo("Traceroute Result", result.stdout)
+    except Exception as e:
+        print(f"Traceroute test doesnt work: {e}")
 
 def show_curl(address):
-    cmd = 'curl ' + address
-    subprocess.call(['osascript', '-e', 'tell application "Terminal" to do script "{}"'.format(cmd)])
+    try:
+        result = subprocess.run(['curl', address], stdout=subprocess.PIPE, text=True)
+        print(result.stdout)
+        messagebox.showinfo("CURL Result", result.stdout)
+    except Exception as e:
+        print(f"Show CURL doesnt work now: {e}")
 
 def wifi_info(address):
-    cmd = 'networksetup -getinfo Wi-Fi '
-    subprocess.call(['osascript', '-e', 'tell application "Terminal" to do script "{}"'.format(cmd)])
+    try:
+        result = subprocess.run(['networksetup', '-getinfo', 'Wi-Fi'], stdout=subprocess.PIPE, text=True)
+        print(result.stdout)
+        messagebox.showinfo("Wi-Fi Info", result.stdout)
+    except Exception as e:
+        print(f"Information about your wi-fi doesnt work: {e}")
     
 def show_devices(address):
     try:

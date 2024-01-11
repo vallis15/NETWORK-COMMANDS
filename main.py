@@ -10,7 +10,7 @@ from GUI_BUTTONS_WINDOWS import create_devices_button
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Commands with terminal")
-    root.configure(background='lightgreen')
+    root.configure(background='grey')
 
     create_button_ping(root)
     create_button_traceroute(root)
